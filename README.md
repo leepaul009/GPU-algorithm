@@ -1,5 +1,6 @@
 # GPU-algorithm
-The pattern recognition algorithms optimized with GPU and OpenCL. The algorithms are implemented with Android NDK and will run with Android application. To run the programs, the Android OpenCL library file is needed. In this case, the lib file is under \jni\libs\libOpenCL.so, which is lib file from smart phone, XiaoMi 2.
+The pattern recognition algorithms optimized with GPU and OpenCL. The algorithms are implemented with Android NDK and will run with Android application. To run the programs, the Android OpenCL library file is needed. In this case, the lib file is under "\jni\libs\libOpenCL.so"(Android Project) and "/system/lib/libOpenCL.so"(Phone Device), which is lib file from smart phone, XiaoMi 2.
+
 
 The algoriths include:
 1)GPU-SVM, parallel version of kNN with a GPU-based run-time acceleration. 
