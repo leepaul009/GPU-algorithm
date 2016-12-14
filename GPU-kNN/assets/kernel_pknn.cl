@@ -303,9 +303,8 @@ __kernel void bitonicMerge(
 	int it = get_local_id(0);
 	int ig = get_global_id(0);
 	int gr = get_group_id(0);
-	int wg = get_local_size(0); //64
+	int wg = get_local_size(0); 
 
-	//int numGC = wgn/2;
 	//row and colum of group cluster
 	int rid = ig/(wg * numGC);
 	int cid = gr - rid * numGC;
@@ -314,7 +313,6 @@ __kernel void bitonicMerge(
 	//global memory offset
 	int offset = rid * scope * numGC * 2 + cid * scope;
 	//int offset = rid * 256 * wgn + cid * 256;
-
 	inDist += offset;
 	inLabel += offset;
 
@@ -322,10 +320,10 @@ __kernel void bitonicMerge(
 	{
 		int op1 = 2 * scope - 1 - ir;
 		int op2 = scope * (numGC * 2 - cid * 2) - 1 - ir;
-		tmpDist[ir] = inDist[ir]; // load 256
-		tmpDist[op1] = inDist[op2]; // load 256
-		tmpLabel[ir] = inLabel[ir]; // load 256
-		tmpLabel[op1] = inLabel[op2]; // load 256
+		tmpDist[ir] = inDist[ir];
+		tmpDist[op1] = inDist[op2];
+		tmpLabel[ir] = inLabel[ir];
+		tmpLabel[op1] = inLabel[op2];
 		barrier(CLK_LOCAL_MEM_FENCE);
 
 		//ComparatorLocal(aux[it], aux[op1]);
@@ -356,23 +354,12 @@ __kernel void bitonicSort(
 	const int split)
 {
 	int it = get_local_id(0);
-	int wg = get_local_size(0); // //64
-
-	int data_len = wg*split;//64*4=256, 64*16=1024
-
-	// Move IN, OUT to block start
-	int offset = get_group_id(0) * data_len; //i*64*4, i*64*16
-
+	int wg = get_local_size(0);
+	int data_len = wg*split;//case 1: 64*4=256, case 2: 64*16=1024
+	//global memory offset
+	int offset = get_group_id(0) * data_len; //case 1: i*64*4, case 2: i*64*16
 	inDist += offset;
 	inLabel += offset;
-/*
-	for(int ir=it; ir<data_len; ir+=wg)
-	{
-		locDist[ir] = inDist[ir];
-		locLabel[ir] = inLabel[ir];
-	}
-	barrier(CLK_LOCAL_MEM_FENCE); // make sure AUX is entirely up to date
-*/
 
 	// Loop on sorted sequence length
 	for (int length=1; length<data_len; length<<=1)
@@ -382,16 +369,12 @@ __kernel void bitonicSort(
 		{
 			float tmpDist[16];
 			uchar tmpLabel[16];
-
+			// Each thread work on several(data_len/wg) data
 			for(int i=it; i<data_len; i+=wg){
 
 				bool direction = (( i & (length<<1)) != 0); // direction of sort: 0=asc, 1=desc
 				int j = i ^ inc; // sibling to compare
 
-				//float iKey = locDist[i];
-				//float jKey = locDist[j];
-				//uchar iLabel = locLabel[i];
-				//uchar jLabel = locLabel[j];
 				float iKey = inDist[i];
 				float jKey = inDist[j];
 				uchar iLabel = inLabel[i];
@@ -400,16 +383,13 @@ __kernel void bitonicSort(
 				bool smaller = (jKey < iKey) || ( jKey == iKey && j < i ); //j is smaller than i
 				bool swap = smaller ^ (j < i) ^ direction;
 
-				//barrier(CLK_LOCAL_MEM_FENCE);
-
 				tmpDist[i/wg] = (swap)?jKey:iKey;
 				tmpLabel[i/wg] = (swap)?jLabel:iLabel;
 			}
 			barrier(CLK_LOCAL_MEM_FENCE);
 
-			for(int i=it; i<data_len; i+=wg){
-				//locDist[i] = tmpDist[i/wg];
-				//locLabel[i] = tmpLabel[i/wg];
+			for(int i=it; i<data_len; i+=wg)
+			{
 				inDist[i] = tmpDist[i/wg];
 				inLabel[i] = tmpLabel[i/wg];
 			}
@@ -417,14 +397,6 @@ __kernel void bitonicSort(
 
 		}
 	}
-/*
-	for(int i=it; i<data_len; i+=wg)
-	{
-		outDist[i] = locDist[i];
-		outLabel[i] = locLabel[i];
-		barrier(CLK_LOCAL_MEM_FENCE);
-	}
-*/
 }
 
 __kernel void bitonicSelect(
@@ -439,12 +411,7 @@ __kernel void bitonicSelect(
 	int cid = ig - rid*numPt;
 
 	int offset1 = ig * len;
-	//inDist += offset;
-	//inLabel += offset;
-
 	int offset2 = rid * len * numPt + cid * kValue;
-	//outDist += offset;
-	//outLabel += offset;
 
 	for(int ir=0; ir<kValue; ++ir)
 	{
