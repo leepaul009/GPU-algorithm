@@ -55,8 +55,8 @@ __kernel void histogram(
 	int ig = get_global_id(0);
   	int locSize = get_local_size(0);
 	int Width = nTrains_r;
-	int rid = ig/Width;
-	int cid = ig - rid*Width;
+	int rid = ig/split;
+	int cid = ig - rid*split;
 	int size = nTrains_r/split;
 
  	int start = rid*Width + cid*size;
