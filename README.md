@@ -68,5 +68,5 @@ Use given MainActivity.java to replace the one in your project
 Define your app folder in MainActivity.java (Because app folder is up to phone device)
 Copy assert fold into $YourAndroidProjectPath\app\src\main
 	kernel_psvmknn.cl //OpenCL kernel file
-Copy gradle file into $YourAndroidProjectPath\app
+Copy the file build.gradle into $YourAndroidProjectPath\app
 Build your project
