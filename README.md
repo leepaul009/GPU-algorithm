@@ -10,12 +10,11 @@ The algoriths include:
 
 
 # How to install:
-## Install java-sdk
-## Install android studio
-## Download android native develop kit, android-ndk-r15c-windows-x86_64.zip
-## Create android project, named 'gksvm'
-
-# Firstly, we will set ndk for android project 
+## Install software
+Install java-sdk
+Install android studio
+Download android native develop kit, android-ndk-r15c-windows-x86_64.zip
+Create android project, named 'gksvm'
 
 ## The setting of android studio 
 For android studio, in menu Setting->Tools->External Tools, add a new item:
@@ -58,7 +57,7 @@ After that, you will get a java head file under $YourAndroidProjectPath\app\src\
 com_example_gksvm_MainActivity.h
 ```
 
-# Build native code
+## Build native code
 In the $YourAndroidProjectPath\app\src\main\AndroidManifest.xml, add following code:
 ```
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -89,4 +88,4 @@ kernel_psvmknn.cl //OpenCL kernel file
 ```
 Copy the file build.gradle into $YourAndroidProjectPath\app
 
-# Build your project
+## Build your project
