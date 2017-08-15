@@ -10,6 +10,7 @@ The pattern recognition algorithms optimized with GPU and OpenCL. The algorithms
 4)GPU-kNN, including GPU-Radix-kNN and GPU-Bitonic-kNN.
 ```
 
+
 # How to install:
 ## Install android studio
 ```
@@ -91,3 +92,7 @@ kernel_psvmknn.cl //OpenCL kernel file
 Copy the file build.gradle into $YourAndroidProjectPath\app
 
 ## Build your project
+
+
+
+
