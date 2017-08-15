@@ -12,8 +12,11 @@ The algoriths include:
 How to install:
 
 Install java-sdk
+
 Install android studio
+
 Download android native develop kit, android-ndk-r15c-windows-x86_64.zip
+
 Create android project, named 'gksvm'
 
 A. Firstly, we will set ndk for android project 
