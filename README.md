@@ -9,24 +9,28 @@ The algoriths include:
 4)GPU-kNN, including GPU-Radix-kNN and GPU-Bitonic-kNN.
 
 
-How to install:
-Install java-sdk
-Install android studio
-Download android native develop kit, android-ndk-r15c-windows-x86_64.zip
-Create android project, named 'gksvm'
+#How to install:
+##Install java-sdk
+##Install android studio
+##Download android native develop kit, android-ndk-r15c-windows-x86_64.zip
+##Create android project, named 'gksvm'
 
-A. Firstly, we will set ndk for android project 
+#A. Firstly, we will set ndk for android project 
 
-A1) The setting of android studio 
+##A1) The setting of android studio 
 For android studio, in menu Setting->Tools->External Tools, add a new item:
+```
 	Name: javah
 	Program: $YourJavaPath\bin\javah.exe
 	Parameters: -classpath $Classpath$ -v -jni $FileClass$
 	Working directory: $YourAndroidProjectPath$\app\src\main\jni
+```
 And add another new item for External Tools:
+```
 	Name: ndk-build
 	Program: $YourNdkPath\ndk-build.cmd
 	Working directory: $YourAndroidProjectPath$\app\src\main\jni
+```
 
 A2) Create Java head file
 Edit $YourProjectFolder\local.properties, in the end of file, add following:
