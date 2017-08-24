@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         System.loadLibrary("jnilibsvm");
     }
     private native String jnifunc();
-    private native String jniSvmRes(String cmd);
+    private native String jniLocalization(String cmd);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
