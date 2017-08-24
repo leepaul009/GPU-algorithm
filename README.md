@@ -1,14 +1,19 @@
 # GPU-algorithm
 The pattern recognition algorithms optimized with GPU and OpenCL. The algorithms are implemented with Android NDK and will run with Android application. Fhe following algorithms are included:
 ```
+gksvm, proposed optimized GPU-SVM-kNN for paper "On-Body Wearable Device Localization with a Fast and Memory
+Efficient SVM-kNN using GPUs"
+```
+Other proposed and reference algorithms:
+```
 GPU-SVM, parallel version of kNN with a GPU-based run-time acceleration. 
 SVM, serial version of kNN, reference:http://www.csie.ntu.edu.tw/~cjlin/libsvm/.
 GPU-SVM-kNN, using a SVM-based decision-maker to refine the outcome of kNN.
 GPU-kNN, including GPU-Radix-kNN and GPU-Bitonic-kNN.
-gksvm, optimized GPU-SVM-kNN
+
 ```
 
-
+# To implement gksvm(proposed optimized GPU-SVM-kNN)
 ## Prerequisites：
 A GPU is needed in the smartphone, otherwise the algorithm could not be built successfully. Besides, the GPU should be available in OpenCL 1.2 or OpenCL 2.0. The vendor of smartphone always provide a OpenCL Dynamic Link Library, named XXXOpenCL.so. This DLL library is needed in this implementation. 
 
