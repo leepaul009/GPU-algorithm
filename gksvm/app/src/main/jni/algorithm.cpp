@@ -1,34 +1,13 @@
-//
-// Created by root on 16-9-4.
-//
 #include <CL/cl.h>
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
 #include <stdarg.h>
-
-/*
-#include <string.h>
-#include <string>
-#include <assert.h>
-#include <math.h>
-#include <time.h>
-#include <vector>
-#include <cstring>
-#include <sstream>
-#include <iostream>
-#include <fstream> // std::ifstream
-#include <cstdio>
-#include <cstdlib>
-#include <iterator>
-*/
-
 #include "common.h"
-#include "test.h"
+#include "algorithm.h"
 #include "./libknn/CLKnn.h"
 
-namespace test
+namespace algorithm
 {
     cl_uint num_platform;
     cl_uint num_device;
@@ -37,12 +16,8 @@ namespace test
     cl_int err;
     cl_context context;
     cl_command_queue cmdQueue;
-
-
     void Init_OpenCL();
     void Context_cmd();
-
-    //int main(int argc, char **argv){
     int main(void)
     {
         Init_OpenCL();
@@ -65,6 +40,4 @@ namespace test
         context = clCreateContext(NULL, 1, &devices[0], NULL, NULL, &err);
         cmdQueue = clCreateCommandQueue(context, devices[0], 0, &err);
     }
-
-
 }
