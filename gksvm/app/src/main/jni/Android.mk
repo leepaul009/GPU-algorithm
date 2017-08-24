@@ -3,7 +3,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE    := jnilibsvm
 LOCAL_SRC_FILES := \
-	common.cpp test.cpp main.cpp \
+	common.cpp algorithm.cpp main.cpp \
 	libknn/CLKnn.cpp libknn/svm.cpp
 
 
