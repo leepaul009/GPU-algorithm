@@ -70,7 +70,7 @@ extern "C" {
 
 JNIEXPORT jstring JNICALL Java_com_example_gksvm_MainActivity_jnifunc
   (JNIEnv *, jobject);
-JNIEXPORT jstring JNICALL Java_com_example_gksvm_MainActivity_jniSvmRes
+JNIEXPORT jstring JNICALL Java_com_example_gksvm_MainActivity_jniLocalization
   (JNIEnv *, jobject, jstring);
 #ifdef __cplusplus
 }
