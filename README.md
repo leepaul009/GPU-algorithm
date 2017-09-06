@@ -1,18 +1,12 @@
 # Wearable sensor localization algorithm 
 The algorithms include in paper "On-Body Wearable Device Localization with a Fast and Memory Efficient SVM-kNN using GPUs". 
-The pattern recognition algorithms optimized with GPU and OpenCL. The algorithms are implemented with Android NDK and will run with Android application. Fhe following algorithms are included:
+The pattern recognition algorithms optimized with GPU and OpenCL. The algorithms are implemented with Android NDK and will run with Android application. The following algorithms are included:
 ```
 gksvm: proposed kernel-optimized GPU-SVM-kNN algorithm
+GPU-SVM-kNN, previous version of GPU-SVM-kNN, which using a SVM-based decision-maker to refine the outcome of kNN.
 GPU-kNN: including the implementation of GPU-radix-kNN, GPU-bitonic-kNN and serial-kNN
 GPU-SVM: including the implementation of GPU-SVM and Serial-SVM
-```
-Other proposed and reference algorithms:
-```
-GPU-SVM, parallel version of kNN with a GPU-based run-time acceleration. 
 SVM, serial version of kNN, reference:http://www.csie.ntu.edu.tw/~cjlin/libsvm/.
-GPU-SVM-kNN, using a SVM-based decision-maker to refine the outcome of kNN.
-GPU-kNN, including GPU-Radix-kNN and GPU-Bitonic-kNN.
-
 ```
 
 # To implement gksvm(proposed optimized GPU-SVM-kNN)
